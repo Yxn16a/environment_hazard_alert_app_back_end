@@ -1,7 +1,5 @@
-const express = require('express'); 
-const { 
-    httpGetAllSlopData
-} = require('./slope.controller')
-const slopeRouter = express.Router();
+import { Router } from 'express'; 
+import { httpGetAllSlopData }  from './slope.controller.js';
+const slopeRouter = Router();
 slopeRouter.get('/',  httpGetAllSlopData); 
-module.exports = slopeRouter;
+export default slopeRouter;

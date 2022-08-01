@@ -1,18 +1,21 @@
-const path = require('path')
-const {
+import path from 'path';
+const __dirname = path.resolve();
+import {
     parse
-} = require('csv-parse');
+} from 'csv-parse';
 
 const stepnessData = [];
 
 function isAlertSevere(slopData) {
-    return slopData['groundWaterLevel'] > 5 && slopData['soilSpeed']>1;
+    return slopData['groundWaterLevel'] > 5 && slopData['soilSpeed'] > 1;
 }
-const fs = require('fs');
+import {
+    createReadStream
+} from 'fs';
 
 function loadSlopData() {
     return new Promise((resolve, reject) => {
-        fs.createReadStream(path.join(__dirname, '..', '..', 'data', 'slop.csv'))
+        createReadStream(path.join(__dirname, 'data', 'slop.csv'))
             .pipe(parse({
                 comment: '#',
                 columns: true
@@ -27,8 +30,6 @@ function loadSlopData() {
                 reject(err);
             })
             .on('end', () => {
-                // const possibleLandSlides = stepnessData.length;
-                // console.log(`${stepnessData} severe data found!`);
                 resolve();
             });
     });
@@ -37,7 +38,7 @@ async function getAllSevereData() {
     return stepnessData;
 }
 
-module.exports = {
+export {
     loadSlopData,
     getAllSevereData
 };

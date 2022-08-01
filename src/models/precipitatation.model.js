@@ -1,18 +1,17 @@
-const path = require('path')
-const {
-    parse
-} = require('csv-parse');
+import path from 'path';
+const __dirname = path.resolve();
+import { parse } from 'csv-parse';
 
 const AlertsData = [];
 
 function isAlertSevere(precipitationData) {
     return precipitationData['amount'] > 10;
 }
-const fs = require('fs');
+import { createReadStream } from 'fs';
 
 function loadPrecipitationData() {
     return new Promise((resolve, reject) => {
-        fs.createReadStream(path.join(__dirname, '..', '..', 'data', 'rain.csv'))
+        createReadStream(path.join(__dirname,'data', 'rain.csv'))
             .pipe(parse({
                 comment: '#',
                 columns: true
@@ -27,8 +26,6 @@ function loadPrecipitationData() {
                 reject(err);
             })
             .on('end', () => {
-                // const RainDataFound = AlertsData.length;
-                // console.log(`${RainDataFound } severe data found!`);
                 resolve();
             });
     });
@@ -37,7 +34,13 @@ async function getAllSevereData() {
     return AlertsData;
 }
 
-module.exports = {
+function doesCellExist(cellData) { 
+    const result = AlertsData.find(({ cell}) => cell === cellData);
+    return  result; 
+}
+
+export {
     loadPrecipitationData,
-    getAllSevereData
-};
+    getAllSevereData,
+    doesCellExist
+}

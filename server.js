@@ -1,14 +1,9 @@
-const http = require('http');
-const app = require('./app')
-const {
-    loadPrecipitationData,
-} = require('./src/models/precipitatation.model')
-const {
-    loadSlopData
-} = require('./src/models/slope.model')
+import { createServer } from 'http';
+import  app  from './app.js';
+import { loadPrecipitationData } from './src/models/precipitatation.model.js';
+import { loadSlopData } from './src/models/slope.model.js';
 const PORT = process.env.PORT || 8000;
-const server = http.createServer(app);
-
+const server = createServer(app);
 async function startServer() {
     await loadSlopData(); 
     await loadPrecipitationData();

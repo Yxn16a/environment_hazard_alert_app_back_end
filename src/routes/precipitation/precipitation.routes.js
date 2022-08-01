@@ -1,7 +1,9 @@
-const express = require('express'); 
-const { 
-    httpGetAllPrecipitation
-} = require('./precipitaion.controller')
-const precipitaionRouter = express.Router();
-precipitaionRouter.get('/', httpGetAllPrecipitation); 
-module.exports = precipitaionRouter;
+import { Router } from 'express'; 
+import { httpGetPrecipitationByCell,
+         httpGetAllPrecipitation
+} from "./precipitaion.controller.js"
+
+const precipitationRouter = Router();
+precipitationRouter.get('/', httpGetAllPrecipitation); 
+precipitationRouter.get('/:cell',httpGetPrecipitationByCell)
+export default precipitationRouter;
