@@ -37,8 +37,13 @@ function loadSlopData() {
 async function getAllSevereData() {
     return stepnessData;
 }
+function isYourCellStepnessHazardious(cellData) { 
+    const result = stepnessData.find(({ cell }) => cell === cellData)
+    return result; 
+}
 
 export {
     loadSlopData,
-    getAllSevereData
+    getAllSevereData, 
+    isYourCellStepnessHazardious
 };
