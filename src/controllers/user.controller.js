@@ -4,7 +4,11 @@ import {
     deleteUserFromTableById,
     addUser,
     updateUserFromTable
-} from '../models/user.model.js'
+} from '../models/users.model.js'
+
+function getUserLocation() {
+     console.log(navigator.geolocation.getCurrentPosition())  
+}
 
 async function getAllUsers(req, res) {
     try {
@@ -66,7 +70,7 @@ async function postUser(req, res) {
         return result;
     } catch (error) {
         return res.status(404).json({
-            error: `User with id : ${params.id} was not added`
+            error: `User with id : ${params.id} already exist. Create a new user`
         })
     }
 }
@@ -84,11 +88,11 @@ async function updateUser(req, res) {
         })
     }
 }
-
 export {
     getAllUsers,
     getUserById,
     deleteUserById,
     postUser,
-    updateUser
+    updateUser,
+    getUserLocation
 }

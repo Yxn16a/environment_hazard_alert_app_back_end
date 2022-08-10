@@ -5,7 +5,7 @@ import {
 function selectAllUsers() {
     return new Promise((resolve, reject) => {
         try {
-            pool.query(`SELECT * FROM precipitation`, function (err, result) {
+            pool.query(`SELECT * FROM users`, function (err, result) {
                 if (err || result.length === 0) {
                     return reject(err)
                 }
@@ -20,7 +20,7 @@ function selectAllUsers() {
 function selectUserById(passedId) {
     return new Promise((resolve, reject) => {
         try {
-            pool.query(`SELECT * FROM precipitation WHERE id = ${passedId}`, function (err, result) {
+            pool.query(`SELECT * FROM users WHERE id = ${passedId}`, function (err, result) {
                 if (err || result.length === 0) {
                     return reject(err)
                 }
@@ -35,7 +35,7 @@ function selectUserById(passedId) {
 function deleteUserFromTableById(passedId) {
     return new Promise((resolve, reject) => {
         try {
-            pool.query(`DELETE FROM precipitation WHERE id = ${passedId}`, function (err, result) {
+            pool.query(`DELETE FROM users WHERE id = ${passedId}`, function (err, result) {
                 if (err || result.length === 0) {
                     return reject(err)
                 }
@@ -50,7 +50,7 @@ function deleteUserFromTableById(passedId) {
 function doesUserExist(userId) {
     return new Promise((resolve, reject) => {
         try {
-            pool.query(`SELECT * FROM precipitation WHERE id = ?`, userId, function (err, result) {
+            pool.query(`SELECT * FROM users WHERE id = ?`, [userId], function (err, result) {
                 if (err) {
                     return reject(err)
                 }
@@ -61,12 +61,11 @@ function doesUserExist(userId) {
         }
     });
 };
-
 function addUser(user) {
     return new Promise((resolve, reject) => {
         try {
             if (doesUserExist(user.id)) {
-                pool.query(`INSERT INTO  precipitation SET ?`, user, function (err, result) {
+                pool.query(`INSERT INTO  users SET ?`, user, function (err, result) {
                     if (err || result.length === 0) {
                         return reject(err)
                     }
@@ -75,8 +74,8 @@ function addUser(user) {
             } else {
                 return resolve(`The user with id : ${user.id} already exist create a new user`)
             }
-        } catch (e) {
-            reject(e)
+        } catch (err) {
+            reject(err)
         }
     })
 };
@@ -84,8 +83,8 @@ function addUser(user) {
 function updateUserFromTable(user) {
     return new Promise((resolve, reject) => {
         try {
-            pool.query(`UPDATE precipitation SET province= ?, district = ?, sector = ?, cell = ? Where id= ?`,
-                [user.province, user.district, user.sector, user.cell, user.id],
+            pool.query(`UPDATE users SET firstName= ?, lastName= ?, phoneNumber = ?, email = ? Where id= ?`,
+                [user.firstName, user.lastName, user.phoneNumber, user.email, user.id],
                 function (err, result) {
                     if (err || result.length === 0) {
                         return reject(err)

@@ -1,10 +1,10 @@
 import express, {
     json
 } from 'express';
-import precipitationRouter from "./routes/precipitation/precipitation.routes.js";
-import slopeRouter from "./routes/slope/slope.route.js";
+import precipitationRouter from "./routes/precipitation.routes.js";
+import slopeRouter from "./routes/slope.route.js";
 import cors from 'cors';
-import userRouter from './routes/users/user.route.js';
+import userRouter from './routes/user.route.js';
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(json());
 // add morgan middlewares
 
 // routes
-app.use('/precipitation', precipitationRouter);
-app.use('/slope', slopeRouter);
-app.use('/user', userRouter)
+app.use('/rainfall', precipitationRouter);
+app.use('/elevation', slopeRouter);
+app.use('/users', userRouter)
 export default app;

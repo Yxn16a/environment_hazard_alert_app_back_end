@@ -9,7 +9,7 @@ import { Router } from 'express';
 import {
     getPrecipitationByCell,
     getAllPrecipitation
-} from "../../controllers/precipitaion.controller.js"
+} from "../controllers/rainfall.controller.js"
 
 const precipitationRouter = Router();
 

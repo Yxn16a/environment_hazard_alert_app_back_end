@@ -1,4 +1,4 @@
-import {  getAllSevereData,doesCellExist} from '../models/precipitatation.model.js';
+import {  getAllSevereData,doesCellExist} from '../models/rainfall.model.js';
 
 async function getAllPrecipitation(req, res) {
     try {
@@ -23,10 +23,6 @@ async function getPrecipitationByCell(req, res) {
     } 
     return res.status(200).json(doesCellExist(cell));
 }
-
-// async savePrecipitationData(req, res){ 
-// const FormdData =
-// }
 
 export {
     getPrecipitationByCell,

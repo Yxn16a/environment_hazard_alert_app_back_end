@@ -1,4 +1,4 @@
-import { getAllSevereData, isYourCellStepnessHazardious} from "../models/slope.model.js"
+import { getAllSevereData, isYourCellStepnessHazardious} from "../models/elevation.model.js"
 async function httpGetAllSlopData(req, res) {
     try {
         const response = await getAllSevereData(); 
