@@ -1,9 +1,11 @@
 import { createPool } from 'mysql2'
 
-export const pool =createPool({
+const pool =createPool({
     host: 'localhost',
     user: 'root',
     password: 'Ihavedream1!',
-    database: 'nodejs',
+    database: 'rsaapp',
     connectionLimit:10
 })
+
+export default pool;

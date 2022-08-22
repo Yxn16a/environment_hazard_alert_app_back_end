@@ -1,22 +1,11 @@
 import { Router } from 'express';
-// import {
-// getAllPrecipitationByCell,
-// getAllPrecipitation,
-// addPrecipitation
-// editPrecipitation
-// } from "./precipitaion.controller.js"
-
 import {
-    getPrecipitationByCell,
-    getAllPrecipitation
+    getAllRainFallData,
+    addRainData
 } from "../controllers/rainfall.controller.js"
 
 const precipitationRouter = Router();
 
-precipitationRouter.get('/', getAllPrecipitation); 
-precipitationRouter.get('/:cell', getPrecipitationByCell)
-// precipitationRouter.post('/:cell',savePrecipitationData)
-// precipitationRouter.put()
-// precipitationRouter.delete()
-
+precipitationRouter.get('/',  getAllRainFallData); 
+precipitationRouter.post('/', addRainData)
 export default precipitationRouter;

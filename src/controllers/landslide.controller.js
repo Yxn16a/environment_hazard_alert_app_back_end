@@ -2,7 +2,7 @@ import {
     selectAllLandSlidesAlert,
     deleteAlertFromTableById,
     addOccuredLandSlide
-} from '../models/landslide.model.js'
+} from '../models/LandSlide.js'
 
 async function getAllLandSlidesAlert(req, res) {
     try {

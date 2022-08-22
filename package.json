@@ -1,39 +1,47 @@
 {
-  "name": "alerysystembackend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
   "type": "module",
+  "name": "sequalize",
+  "version": "1.0.0",
+  "description": "This repository contains node js code about landslide and flood alert system You can comment or suggest anything to make the code look better for any person who may want to  learn from it.",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/server.js",
-    "start": "node ./src/server.js"
+  "test": "echo \"Error: no test specified\" && exit 1", 
+  "build": "babel ./src/server.js -d resources",
+  "dev": "nodemon ./src/server.js",
+  "start": "node ./src/server.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Yxn16a/landslide_and_flood_alert_system_backend.git"
+  "type": "git",
+  "url": "git+https://github.com/Yxn16a/landslide_and_flood_alert_system_backend.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Yxn16a/landslide_and_flood_alert_system_backend/issues"
+  "url": "https://github.com/Yxn16a/landslide_and_flood_alert_system_backend/issues"
   },
   "homepage": "https://github.com/Yxn16a/landslide_and_flood_alert_system_backend#readme",
   "dependencies": {
-    "axios": "^0.27.2",
-    "cors": "^2.8.5",
-    "csv-parse": "^5.2.2",
-    "express": "^4.18.1",
-    "geolocation": "^0.2.0",
-    "moment": "^2.29.4",
-    "mysql2": "^2.3.3",
-    "npm": "^8.15.1",
-    "parse-js": "^0.7.4"
+  "@babel/cli": "^7.18.10",
+  "@babel/core": "^7.18.10",
+  "@babel/preset-env": "^7.18.10",
+  "@babel/register": "^7.18.9",
+  "axios": "^0.27.2",
+  "cors": "^2.8.5",
+  "csv-parse": "^5.2.2",
+  "express": "^4.18.1",
+  "geolocation": "^0.0.0", 
+  "moment": "^2.29.4", 
+  "mysql2": "^2.3.3", 
+  "node-fetch": "^2.6.1", 
+  "npm": "^8.15.1",
+  "parse-js": "^0.7.4",
+  "sequelize": "^6.21.3"
   },
+  
   "engines": {
-    "node": "v16.15.0"
+  "node": "v16.15.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+  "nodemon": "^2.0.19"
   }
 }

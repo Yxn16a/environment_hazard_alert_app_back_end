@@ -1,4 +1,4 @@
-import { selectSoilTypeByUserLocation } from '../models/soiltype.model.js'
+import { selectSoilTypeByUserLocation } from '../models/SoilType.js'
 
 async function getSoilTypeByLocation(req, res) {
     try {

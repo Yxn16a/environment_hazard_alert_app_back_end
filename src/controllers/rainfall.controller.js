@@ -1,30 +1,40 @@
-import {  getAllSevereData,doesCellExist} from '../models/rainfall.model.js';
+import {
+    seletAllRainFallData,
+    addRainfallData
+} from '../models/RainFall.js'
 
-async function getAllPrecipitation(req, res) {
+
+async function getAllRainFallData(req, res) {
     try {
-        const response = await getAllSevereData();
+        const response = await seletAllRainFallData();
         const result = res.status(200).json({
-             message: 'All precipitation data found successfully',
-             data: response
-         });
-         return result;
+            message: 'All Rainfall data were found',
+            data: response
+        });
+        return result;
     } catch (error) {
-        return res.status(404).json(
-            { error: `Data not found` })
-    }   
+        return res.status(404).json({
+            error: `No rain data were found`
+        })
+    }
 };
 
-async function getPrecipitationByCell(req, res) {
-    const { cell } = req.params;
-    // console.log(cell)
-    if (!doesCellExist(cell)) { 
-        return res.status(404).json(
-            { error: `The cell with name of ${cell} was not found` })
-    } 
-    return res.status(200).json(doesCellExist(cell));
+async function addRainData(req, res) {
+    const params = req.body
+    try {
+        const response = await addRainfallData(params);
+        const result = res.status(200).json({
+            data: response
+        });
+        return result;
+    } catch (error) {
+        return res.status(404).json({
+            error: `Rainfall alert with id : ${params.id} already exist. Create a new elevation`
+        })
+    }
 }
 
 export {
-    getPrecipitationByCell,
-    getAllPrecipitation
+    getAllRainFallData,
+    addRainData
 }
