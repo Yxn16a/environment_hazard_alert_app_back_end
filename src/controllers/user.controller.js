@@ -32,16 +32,16 @@ async function login(req, res) {
       const jsontoken = jwt.sign(
         {
           /**payload should do not have password in it */
-          result: response, 
+          result: response,
         },
         process.env.ACCESS_TOKEN_SECRET,
         {
           expiresIn: "30m",
         }
       );
-      res.cookie("jwt",jsontoken, {
+      res.cookie("jwt", jsontoken, {
         httpOnly: true,
-        maxAge:  "30m",
+        maxAge: "30m",
       });
       return res.status(200).json({
         success: 1,
@@ -60,12 +60,15 @@ async function login(req, res) {
   }
 }
 
-function getUserLocation() {
-  console.log(navigator.geolocation.getCurrentPosition());
-}
+function getUserLocation() {}
 async function getAllUsers(req, res) {
   try {
     const response = await selectAllUsers();
+    if (!response[0]) {
+      return res.status(400).json({
+        message: "No user were found",
+      });
+    }
     const result = res.status(200).json({
       message: "All users found successfully",
       data: response,
@@ -129,7 +132,7 @@ async function register(req, res) {
         message: `Invalid phoneNumber: phoneNumber must be a number not characters`,
       });
     }
-    if (password.length < 8) {
+    if (body.password.length < 8) {
       return res
         .status(400)
         .json({ message: "Password less than 8 characters" });
@@ -158,6 +161,7 @@ async function register(req, res) {
       });
     }
   } catch (error) {
+    console.log(error)
     return res.status(404).json({
       error: `User with phoneNumber: ${body.phoneNumber} already exist. Create a new user`,
     });

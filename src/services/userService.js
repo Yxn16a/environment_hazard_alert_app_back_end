@@ -1,19 +1,13 @@
 // service will interact with database
 import pool from "../databaseConfig/connectionPool.js";
 import user from "../models/User.js";
-function selectAllUsers() {
-  return new Promise((resolve, reject) => {
-    try {
-      pool.query(`SELECT * FROM Users`, function (err, result) {
-        if (err || result.length === 0) {
-          return reject(err);
-        }
-        return resolve(result);
-      });
-    } catch (e) {
-      reject(e);
-    }
-  });
+async function selectAllUsers() {
+  try {
+    const foundUser = await user.findAll();
+    return foundUser;
+  } catch (err) {
+    return err;
+  }
 }
 
 function selectUserById(phoneNumber) {
@@ -34,34 +28,34 @@ function selectUserById(phoneNumber) {
   });
 }
 
-// function deleteUserFromTableById(phoneNumber) {
-//   return new Promise((resolve, reject) => {
-//     try {
-//       pool.query(
-//         `DELETE FROM Users WHERE  phoneNumber = ${phoneNumber}`,
-//         function (err, result) {
-//           if (err || result.length === 0) {
-//             return reject(err);
-//           }
-//           return resolve(
-//             `The user with phoneNumber : ${phoneNumber} was deleted`
-//           );
-//         }
-//       );
-//     } catch (e) {
-//       reject(e);
-//     }
-//   });
-// }
-
 function deleteUserFromTableById(phoneNumber) {
-  try {
-    const count = user.destroy({ where: { phoneNumber: phoneNumber } });
-    return `The user with phoneNumber : ${phoneNumber} was deleted`;
-  } catch (err) {
-    return err;
-  }
+  return new Promise((resolve, reject) => {
+    try {
+      pool.query(
+        `DELETE FROM Users WHERE  phoneNumber = ${phoneNumber}`,
+        function (err, result) {
+          if (err || result.length === 0) {
+            return reject(err);
+          }
+          return resolve(
+            `The user with phoneNumber : ${phoneNumber} was deleted`
+          );
+        }
+      );
+    } catch (e) {
+      reject(e);
+    }
+  });
 }
+
+// function deleteUserFromTableById(phoneNumber) {
+//   try {
+//     const count = user.destroy({ where: { phoneNumber: phoneNumber } });
+//     return `The user with phoneNumber : ${phoneNumber} was deleted`;
+//   } catch (err) {
+//     return err;
+//   }
+// }
 
 function doesUserExist(phoneNumber) {
   return new Promise((resolve, reject) => {
@@ -75,8 +69,8 @@ function doesUserExist(phoneNumber) {
           return resolve(result);
         }
       );
-    } catch (e) {
-      reject(e);
+    } catch (err) {
+      reject(err);
     }
   });
 }
