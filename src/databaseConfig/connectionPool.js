@@ -1,11 +1,13 @@
-import { createPool } from 'mysql2'
+import { createPool } from "mysql2";
+import dotenv from "dotenv";
+dotenv.config();
 
-const pool =createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'Ihavedream1!',
-    database: 'rsaapp',
-    connectionLimit:10
-})
+const pool = createPool({
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE,
+  connectionLimit: 10,
+});
 
 export default pool;
