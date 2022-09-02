@@ -171,7 +171,7 @@ userRouter.post("/login", login);
  *       '400':
  *          description: Bad request
  */
-userRouter.get("/", checkToken, getAllUsers);
+userRouter.get("/", getAllUsers);
 /**GetAll-Users-END*/
 
 /**GetUserByPhoneNumber-START*/
@@ -231,7 +231,7 @@ userRouter.get("/:phoneNumber", checkToken, getUserById);
  *       '400':
  *          description: Bad request
  */
-userRouter.delete("/:phoneNumber", checkToken, deleteUserById);
+userRouter.delete("/:phoneNumber", deleteUserById);
 /**DeleteUserByPhoneNumber-END*/
 
 /**UpdateUser-START*/

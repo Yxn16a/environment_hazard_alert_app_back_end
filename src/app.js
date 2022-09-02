@@ -39,6 +39,8 @@ app.use(
   })
 );
 app.use(json());
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
 /** use morgan for api log */
 app.use(morgan("tiny"));
