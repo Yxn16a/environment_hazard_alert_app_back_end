@@ -6,8 +6,6 @@ import rainfall from "./models/RainFall.js";
 import soiltype from "./models/SoilType.js";
 import user from "./models/User.js";
 import landslides from "./models/LandSlide.js";
-import dotenv from "dotenv"
-dotenv.config()
 const PORT = process.env.PORT || 8000;
 const server = createServer(app);
 async function startServer() {
