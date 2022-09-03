@@ -7,6 +7,7 @@ import floodRouter from "./routes/flood.route.js";
 import landSlidesRouter from "./routes/landSlides.route.js";
 import weatherRouter from "./routes/weatherapi.route.js";
 import soilRouter from "./routes/soil.route.js";
+import homeRouter from "./routes/home.router.js";
 import morgan from "morgan";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
@@ -86,4 +87,5 @@ app.use("/flood", floodRouter);
 app.use("/landslide", landSlidesRouter);
 app.use("/soil", soilRouter);
 app.use("/weather", weatherRouter)
+app.use("/",homeRouter)
 export default app;
